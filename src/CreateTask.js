@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from 'uuid';
+
 function Createtask({tasks,setTasks,setShowCreateTask}){
     const[task,setTask]=useState({
         id:"",
@@ -50,9 +51,7 @@ function Createtask({tasks,setTasks,setShowCreateTask}){
         document.getElementById('desc').value=""; 
         document.getElementById('sta').value=""; 
      }
-     const ap=()=>{
-
-     }
+    
   return(
         <center>
        <form onSubmit={handleSubmit}>

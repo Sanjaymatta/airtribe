@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDrag } from "react-dnd";
 import { useDrop } from "react-dnd";
 import Createtask from "./CreateTask";
-import toast from "react-hot-toast";
+
+import Delete from "./CreateTask";
 const ListTask=({tasks,setTasks})=>{
     
     const [showCreateTask,setShowCreateTask]=useState(false);
-     
-
-    // const [start,setStart]=useState([]);
-    // const [progress,setProgress]=useState([]);
-    // const [completed,setCompleted]=useState([]);
-    // useEffect(()=>{
-    //     const fStart=tasks.filter((task)=>task.status==="notcompleted");
-    //     const fInProgress=tasks.filter((task)=>task.status==="inprogress");
-    //     const fCompleted=tasks.filter((task)=>task.status==="completed");
-    //     setStart(fStart);
-    //     setProgress(fInProgress);
-    //     setCompleted(fCompleted);
-    // },[tasks]);
-    
- 
     const statusarr=["notcompleted","inprogress","completed"];
     return(
         <div>
@@ -30,7 +16,7 @@ const ListTask=({tasks,setTasks})=>{
           <div className="container">
             <div className="row">
                 {statusarr.map((status, index) => (
-                    <Section  status={status}  tasks={tasks} key={index} setTasks={setTasks} setShowCreateTask={setShowCreateTask}/>
+                    <Section  status={status}  tasks={tasks} key={index} setTasks={setTasks} setShowCreateTask={setShowCreateTask} />
                 ))}
             </div>
             
@@ -73,13 +59,13 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
         
      }
      const getColor=(status)=>{
-         if(status=="notcompleted"){
+         if(status==="notcompleted"){
             return "btn-danger btn-sm m-4"
          }
-         if(status=="inprogress"){
+         if(status==="inprogress"){
             return "btn-warning btn-sm m-4"
          }
-         if(status=="completed"){
+         if(status==="completed"){
             return "btn-success btn-sm m-4"
          }
      }
@@ -93,7 +79,7 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
                     <div ref={drop}>
                     {cards.map((t,index)=>{
                         return(
-                        <Task task={t} tasks={tasks} name={t.name} id={t.id} key={index}/>)
+                        <Task task={t} tasks={tasks} name={t.name} id={t.id} key={index} setTasks={setTasks}/>)
                     })}
                     </div>
                    
@@ -106,7 +92,7 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
     );
  }
 
- const Task=({task,tasks})=>{
+ const Task=({task,tasks,setTasks})=>{
     
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "task",
@@ -115,12 +101,20 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
           isDragging: !!monitor.isDragging()
         })
       }))
-    
+    function handleremove(id){
+        const filteredTasks=tasks.filter((t)=>t.id!==id);
+        
+        localStorage.setItem("tasks",JSON.stringify(filteredTasks));
+        setTasks(filteredTasks);
+    }
+
     return(
-    <div className="card shadow  bg-body-tertiary rounded m-4" >
-        <div className="card-body " ref={drag}>
-          {task.name}
+    <div className="card shadow  bg-body-tertiary rounded m-4"  >
+        <div className="card-body  d-flex justify-content-between align-items-center" ref={drag}>
+           {task.name}<span><button className=" btn btn-secondary btn-sm  ml-100% " onClick={()=>handleremove(task.id)}>-</button></span>
+           
         </div>
+        
     </div>
     )
  }
