@@ -74,7 +74,7 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
                
                 <div className="col" key={index}>
                    
-                    <button type="button" className={`btn ${getColor(status)}`}>{status}</button><span className="text-danger m-4 fw-bold">{cards.length}</span>
+                    <button type="button" className={`btn ${getColor(status)} fs-5`}>{status}</button><span className="text-danger m-4 fw-bold">{cards.length}</span>
 
                     <div ref={drop}>
                     {cards.map((t,index)=>{
@@ -83,7 +83,7 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
                     })}
                     </div>
                    
-                    <button type="button" className="btn btn-secondary m-4" onClick={handleCreateTaskClick}>+  new</button>
+                    <button type="button" className="btn btn-outline-secondary m-4" onClick={handleCreateTaskClick} style={{fontSize:"20px"}}>+  New</button>
                    
                      
                 </div>
@@ -110,7 +110,7 @@ const Section=({tasks,status,index,setTasks,setShowCreateTask})=>{
 
     return(
     <div className="card shadow  bg-body-tertiary rounded m-4"  >
-        <div className="card-body  d-flex justify-content-between align-items-center" ref={drag}>
+        <div className="card-body  d-flex justify-content-between align-items-center fw-bold" ref={drag}>
            {task.name}<span><button className=" btn btn-secondary btn-sm  ml-100% " onClick={()=>handleremove(task.id)}>-</button></span>
            
         </div>
