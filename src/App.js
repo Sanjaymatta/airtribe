@@ -19,7 +19,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
      <Toaster />
       <div>
-      <Createtask tasks={tasks} setTasks={setTasks}/>  
+      {/* <Createtask tasks={tasks} setTasks={setTasks}/>   */}
       <ListTask tasks={tasks} setTasks={setTasks}/> 
       </div>
       </DndProvider>

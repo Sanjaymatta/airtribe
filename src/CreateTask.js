@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast from "react-hot-toast";
-function Createtask({tasks,setTasks}){
+import { v4 as uuidv4 } from 'uuid';
+function Createtask({tasks,setTasks,setShowCreateTask}){
     const[task,setTask]=useState({
         id:"",
         name:"",
@@ -17,13 +18,7 @@ function Createtask({tasks,setTasks}){
             setTasks(storedTasks);
         }
     }, []);
-    const[genId,SetGenId]=useState(0);
-     function idcreate(){
-        SetGenId(tasks.length+1);
-        return(
-         {genId}
-        );
-     }
+   
      function setname(){
          setTask(()=>{
             task.name=document.getElementById('inp').value;
@@ -55,8 +50,11 @@ function Createtask({tasks,setTasks}){
         document.getElementById('desc').value=""; 
         document.getElementById('sta').value=""; 
      }
+     const ap=()=>{
+
+     }
   return(
-  
+        <center>
        <form onSubmit={handleSubmit}>
         <label htmlFor='inp'>Enter task</label>
          <input type="text"   className="shadow bg-body rounded m-4 " id='inp' ></input>
@@ -64,9 +62,10 @@ function Createtask({tasks,setTasks}){
          <input type="text"   className="shadow bg-body rounded m-4 " id='sta'></input>
          <label htmlFor='desc'>Describe</label>
          <input type="text"   className="shadow bg-body rounded m-4 " id='desc'></input>
-         <button type="submit" className="btn btn-info " onClick={(e)=>setTask({...task,id:idcreate(),name:setname(),desc:setdesc(),status:setstatus()})}>Add</button>
+         <button type="submit" className="btn btn-info " onClick={(e)=>{setTask({...task,id:uuidv4(),name:setname(),desc:setdesc(),status:setstatus()});}}  >Add</button>
+         <button type="button" className="btn btn-danger m-4" onClick={(e)=>{setShowCreateTask(false);toast.error("closed")}}>Close</button>
        </form>
-  
+       </center>
   );
 }
 export default Createtask;
