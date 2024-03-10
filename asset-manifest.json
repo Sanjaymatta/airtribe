@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/airtribe/static/css/main.d5289b2f.css",
+    "main.js": "/airtribe/static/js/main.029073d2.js",
+    "static/js/453.d1ead18a.chunk.js": "/airtribe/static/js/453.d1ead18a.chunk.js",
+    "index.html": "/airtribe/index.html",
+    "main.d5289b2f.css.map": "/airtribe/static/css/main.d5289b2f.css.map",
+    "main.029073d2.js.map": "/airtribe/static/js/main.029073d2.js.map",
+    "453.d1ead18a.chunk.js.map": "/airtribe/static/js/453.d1ead18a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d5289b2f.css",
+    "static/js/main.029073d2.js"
+  ]
+}
